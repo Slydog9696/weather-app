@@ -7,22 +7,42 @@ document.getElementById('getWeather').addEventListener('click', function () {
 	const state = document.getElementById('state').value;
 	const country = document.getElementById('country').value;
 
+	// if (city && country) {
+	// 	fetchWeather(city, state, country);
+	// } else {
+	// 	alert('Please enter both city and country');
+	// }
 	if (city && country) {
-		fetchWeather(city, state, country);
+		fetch('http://localhost:3001/api/key')
+			.then((response) => response.json())
+			.then((data) => {
+				const apiKey = data.apiKey;
+				fetchWeather(city, state, country, apiKey);
+			});
 	} else {
 		alert('Please enter both city and country');
 	}
 });
 
-function fetchWeather(city, state, country) {
-	const apiKey = '97d46ca92b270fdb151e8e0b59184f90';
+function fetchWeather(city, state, country, apiKey) {
 	let location = `${city}`;
 	if (state) {
 		location += `,${state}`;
 	}
 	location += `,${country}`;
 
-	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=imperial`;
+	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
+
+	/* 
+function fetchWeather(city, state, country) {
+	// const apiKey = '';
+	let location = `${city}`;
+	if (state) {
+		location += `,${state}`;
+	}
+	location += `,${country}`;
+
+	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=imperial`; */
 
 	fetch(url)
 		.then((response) => response.json())
