@@ -7,6 +7,11 @@ body {
 
 .container {
 	background-color: steelblue;
+	background: linear-gradient(to right, rgba(67, 124, 205), rgba(69, 214, 202))
+		repeat-3;
+	background-clip: border;
+	-webkit-background-clip: border;
+	/* -webkit-text-fill-color: transparent; */
 	padding: 20px;
 	border-radius: 8px;
 	border-color: black;
@@ -15,6 +20,18 @@ body {
 	margin: 0 auto;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 	display: inline-block;
+	animation: fade 2s ease-in 1s it3 dr;
+	/* pointer-events: none;
+	opacity: 0; */
+}
+
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 #city {
